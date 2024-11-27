@@ -5,7 +5,7 @@ var fs = require('fs');
 var path = require('path');
 var multer = require('multer');
 var upload = multer({dest: path.join(__dirname, '..', 'uploads')});
-var {S3Client, PutObjectCommend } = require("@aws-sdk/client-s3");
+var {S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
 const s3Client = new S3Client({region: 'ap-northeast-2'});
 
 /* GET users listing. */
@@ -17,7 +17,7 @@ router.post('/', upload.single('new-image'), function(req, res, next) {
   console.log(req.file);
   fs.readFile(req.file.path, function(err, data) {
     s3Client.send(
-      new PutObjectCommend({
+      new PutObjectCommand({
         Bucket: "test-bucket-20241127-1",
         Key: req.file.filename,
         Body: data,
