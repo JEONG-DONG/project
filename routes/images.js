@@ -21,7 +21,7 @@ router.post('/', upload.single('new-image'), function(req, res, next) {
         Bucket: "test-bucket-20241127-1",
         Key: req.file.filename,
         Body: data,
-        ContentType: req.file.mimetype
+        ContentType: req.file.mimetype,
       })
     ).then((data) => {
       console.log(data);
