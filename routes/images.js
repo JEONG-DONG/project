@@ -18,7 +18,7 @@ router.post('/', upload.single('new-image'), function(req, res, next) {
   fs.readFile(req.file.path, function(err, data) {
     s3Client.send(
       new PutObjectCommend({
-        Bucket: 'test-bucket-20241127-1',
+        Bucket: "test-bucket-20241127-1",
         Key: req.file.filename,
         Body: data,
         ContentType: req.file.mimetype
