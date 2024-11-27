@@ -40,9 +40,7 @@
       $.getJSON('/images', function (data) {
         $.each(data, function (i, e){
           var img = $('<img>');
-          img.attr('src', "https://test-bucket-20241127-1.s3.ap-northeast-2.amazonaws.com" + e.url
-
-        )
+          img.attr('src', "https://arn:aws:s3:::test-bucket-20241127-1" + e.key)
         .attr({'width': '200px', 'height': '200px'})
         .addClass('img-thumbnail');
 
