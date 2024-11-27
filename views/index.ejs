@@ -17,6 +17,8 @@
       <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%"></div>
     </div>
 
+    <div id="image-list"></div>
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js" integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script>
 
@@ -33,6 +35,18 @@
             var progress = parseInt(data.loaded / data.total * 100, 10);
             $('#progress .progress-bar').css('width', progress + '%');
           }
+        });
+      });
+      $.getJSON('/images', function (data) {
+        $.each(data, function (i, e){
+          var img = $('<img>');
+          img.attr('src', "https://test-bucket-20241127-1.s3.ap-northeast-2.amazonaws.com" + e.url
+
+        )
+        .attr({'width': '200px', 'height': '200px'})
+        .addClass('img-thumbnail');
+
+        $('#image-list').append(img);
         });
       });
     </script>
